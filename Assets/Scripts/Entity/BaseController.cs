@@ -41,16 +41,11 @@ public class BaseController : MonoBehaviour
     private void Movement(Vector2 direction)
     {
         direction = direction * statHandler.moveSpeed;
+        bool isLeft = movementDirection.x < 0; // x값이 0보다 작을때 (A버튼을 누를때) 왼쪽을 바라봄
 
+        chracterRenderer.flipX = isLeft;
         _rigidbody.velocity = direction;
         animationHandler.Move(direction);
     }
 
-    protected void Rotate(Vector2 direction)
-    {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // Mathf.Rad2Deg 각도로 변환해주는 기능
-        bool isLeft = Mathf.Abs(rotZ) > 90f; // 90도 이상이면 왼쪽을 바라보고 있는 것
-
-        chracterRenderer.flipX = isLeft;
-    }
 }
