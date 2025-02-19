@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class HomeUI : MonoBehaviour
+public class HomeUI : BaseUI
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Button startButton;
+    [SerializeField] private Button exitButton;
+
+    public override void Init(UIManager uiManager)
+    {
+        base.Init(uiManager);
+
+        startButton.onClick.AddListener(OnClickeStartButton);
+        exitButton.onClick.AddListener(OnClickExitButton);
+    }
+    public void OnClickeStartButton()
+    {
+        //GameManager.instance.StartGame();
+    }
+    public void OnClickExitButton()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    protected override UIState GetUIState()
     {
-        
+        return UIState.Home;
     }
 }
