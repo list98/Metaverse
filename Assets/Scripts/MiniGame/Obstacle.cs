@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    GameManager gameManager;
+    MiniGameManager miniGameManager;
     //오브젝트 상하로 이동시킬 값
     public float highPosY = 1f;
     public float lowPosY = -1f;
@@ -21,7 +21,8 @@ public class Obstacle : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameManager.instance;
+        miniGameManager = MiniGameManager.instance;
+        
     }
     public Vector3 SetRandomPlace(Vector3 lastPosition, int obstacleCount)
     { 
@@ -41,11 +42,10 @@ public class Obstacle : MonoBehaviour
     // 트리거에서 나갈때마다 점수 1점 추가
     private void OnTriggerExit2D(Collider2D collision)
     {
-        PlayerController player = collision.GetComponent<PlayerController>();
+        MiniGamePlayer player = collision.GetComponent<MiniGamePlayer>();
         if (player != null)
-            gameManager.AddScore(1);
+            miniGameManager.AddScore(1);
 
-        
     }
 
 }

@@ -1,22 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ScoreUI : BaseUI
 {
+    [SerializeField] private Button minigameButton;
+    [SerializeField] private Button exitButton;
+
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI bestscoreText;
+
+    public override void Init(UIManager uiManager)
+    {
+        base.Init(uiManager);
+
+        minigameButton.onClick.AddListener(OnClickeStartButton);
+        exitButton.onClick.AddListener(OnClickExitButton);
+    }
+    public void OnClickeStartButton()
+    {
+        SceneManager.LoadScene("MiniGameScene");
+    }
+    public void OnClickExitButton()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
     
 
-    private void Start()
-    {
-
-    }
-
-    public void UpdateScoreText(int score)
+    public void UpdateScoreText(int score, int bestscore)
     {
         scoreText.text = score.ToString();
+        bestscoreText.text = bestscore.ToString();
     }
 
     protected override UIState GetUIState()

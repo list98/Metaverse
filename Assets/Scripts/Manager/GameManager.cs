@@ -17,20 +17,11 @@ public class GameManager : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         player.Init(this);
     }
-    public void GameOver()
-    {
-        Debug.Log("Game Over");
-    }
+    
 
-    public void RestartGame()
+    public void startGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void AddScore(int score)
-    {
-        currentMiniGameScore += score;
-        Debug.Log($"Score" + currentMiniGameScore);
     }
 
 }

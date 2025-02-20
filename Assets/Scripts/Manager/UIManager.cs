@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public enum UIState
 {
-    Home,
-    Score,
     Game,
+    Score,
 }
 
 public class UIManager : MonoBehaviour
@@ -21,12 +21,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    UIState currentState = UIState.Home;
+    UIState currentState = UIState.Game;
 
-    HomeUI homeUI = null;
 
+    
     GameUI gameUI = null;
-
     ScoreUI scoreUI = null;
 
     Obstacle obstacle = null;
@@ -35,21 +34,19 @@ public class UIManager : MonoBehaviour
         instance = this;
         obstacle = FindObjectOfType<Obstacle>();
 
-        homeUI = GetComponentInChildren<HomeUI>(true);
-        homeUI?.Init(this);
         gameUI = GetComponentInChildren<GameUI>(true);
         gameUI?.Init(this);
         scoreUI = GetComponentInChildren<ScoreUI>(true);
         scoreUI?.Init(this);
 
-        ChangeState(UIState.Home);
+        ChangeState(UIState.Game);
     }
 
 
     public void ChangeState(UIState state)
     {
         currentState = state;
-        homeUI?.SetActive(currentState);
+        
         gameUI?.SetActive(currentState);
         scoreUI?.SetActive(currentState);
     }
@@ -61,6 +58,16 @@ public class UIManager : MonoBehaviour
 
     public void OnClickExit()
     {
-
+        SceneManager.LoadScene("MainScene");
     }
+    public void SetGameOver()
+    {
+        ChangeState(UIState.Score);
+    }
+
+    public void UpdateScore(int score)
+    {
+        gameUI.UpdateScoreText(score);
+    }
+    
 }
