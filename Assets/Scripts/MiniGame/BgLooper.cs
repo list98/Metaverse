@@ -31,7 +31,7 @@ public class BgLooper : MonoBehaviour
             float widthOfBgObject = ((BoxCollider2D)collision).size.x;
             Vector3 pos = collision.transform.position;
 
-            pos.x = widthOfBgObject * numBgCount;
+            pos.x += widthOfBgObject * numBgCount;
             collision.transform.position = pos;
             return;
         }   
@@ -42,11 +42,5 @@ public class BgLooper : MonoBehaviour
             obstacleLastPosition = obstacle.SetRandomPlace(obstacleLastPosition, obstacleCount);
         }
 
-    }
-
-
-    void Update()
-    {
-        
     }
 }

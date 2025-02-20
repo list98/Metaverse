@@ -45,7 +45,6 @@ public class Obstacle : MonoBehaviour
         MiniGamePlayer player = collision.GetComponent<MiniGamePlayer>();
         if (player != null)
             miniGameManager.AddScore(1);
-
     }
 
 }
