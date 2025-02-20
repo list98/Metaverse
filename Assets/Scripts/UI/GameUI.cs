@@ -11,8 +11,6 @@ public class GameUI : BaseUI
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
-
-        
     }
     public void UpdateScoreText(int score)
     { 

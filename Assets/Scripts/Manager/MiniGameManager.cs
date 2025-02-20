@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class MiniGameManager : MonoBehaviour
 {
     public static MiniGameManager instance;
+    public MiniGamePlayer player { get; private set; }
 
-    private int currentScore = 0;
+    [SerializeField]private int currentScore = 0;
+
     UIManager uiManager;
-    public UIManager UIManager { get { return uiManager; } }
 
     private void Awake()
     {
@@ -18,7 +19,7 @@ public class MiniGameManager : MonoBehaviour
     }
     private void Start()
     {
-        uiManager.UpdateScore(0);
+        
     }
     public void LoadMiniGame()
     {
@@ -27,6 +28,17 @@ public class MiniGameManager : MonoBehaviour
     public void ReturnToMain()
     {
         SceneManager.LoadScene("MainScene");
+    }
+    public void StartGame()
+    {
+        uiManager.SetPlayGame();
+        StartAddScore();
+
+    }
+    void StartAddScore()
+    { 
+        currentScore = currentScore + 1;
+        uiManager.UpdateScore(currentScore);
     }
     public void GameOver()
     {

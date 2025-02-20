@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public enum UIState
 {
+    Home,
     Game,
     Score,
 }
@@ -21,10 +22,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    UIState currentState = UIState.Game;
+    UIState currentState = UIState.Home;
 
 
     
+    HomeUI homeUI = null;
     GameUI gameUI = null;
     ScoreUI scoreUI = null;
 
@@ -34,32 +36,37 @@ public class UIManager : MonoBehaviour
         instance = this;
         obstacle = FindObjectOfType<Obstacle>();
 
+        homeUI = GetComponentInChildren<HomeUI>(true);
+        homeUI?.Init(this);
         gameUI = GetComponentInChildren<GameUI>(true);
         gameUI?.Init(this);
         scoreUI = GetComponentInChildren<ScoreUI>(true);
         scoreUI?.Init(this);
 
-        ChangeState(UIState.Game);
+        ChangeState(UIState.Home);
     }
-
+    private void Start()
+    {
+        
+    }
 
     public void ChangeState(UIState state)
     {
         currentState = state;
         
+        homeUI?.SetActive(currentState);
         gameUI?.SetActive(currentState);
         scoreUI?.SetActive(currentState);
     }
-
-    public void OnClickStart()
+    public void SetMiniGame()
+    {
+        ChangeState(UIState.Home);
+    }
+    public void SetPlayGame()
     {
         ChangeState(UIState.Game);
     }
 
-    public void OnClickExit()
-    {
-        SceneManager.LoadScene("MainScene");
-    }
     public void SetGameOver()
     {
         ChangeState(UIState.Score);
