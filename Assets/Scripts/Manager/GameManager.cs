@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
         player = FindObjectOfType<PlayerController>();
         player.Init(this);
+        Time.timeScale = 1.0f;
     }
     
 

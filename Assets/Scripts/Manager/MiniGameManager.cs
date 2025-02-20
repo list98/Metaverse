@@ -24,10 +24,12 @@ public class MiniGameManager : MonoBehaviour
     public void LoadMiniGame()
     {
         SceneManager.LoadScene("MiniGameScene");
+        Time.timeScale = 0.0f;
     }
     public void ReturnToMain()
     {
         SceneManager.LoadScene("MainScene");
+        Time.timeScale = 1.0f;
     }
     public void StartGame()
     {

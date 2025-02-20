@@ -28,6 +28,7 @@ public class ScoreUI : BaseUI
     public void OnClickExitButton()
     {
         SceneManager.LoadScene("MainScene");
+        Time.timeScale = 1.0f;
     }
     
 

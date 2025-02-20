@@ -9,6 +9,7 @@ public enum UIState
     Home,
     Game,
     Score,
+    Trigger,
 }
 
 public class UIManager : MonoBehaviour
@@ -43,6 +44,7 @@ public class UIManager : MonoBehaviour
         scoreUI = GetComponentInChildren<ScoreUI>(true);
         scoreUI?.Init(this);
 
+        
         ChangeState(UIState.Home);
     }
     private void Start()
@@ -64,6 +66,7 @@ public class UIManager : MonoBehaviour
     }
     public void SetPlayGame()
     {
+        Time.timeScale = 1.0f;
         ChangeState(UIState.Game);
     }
 
